@@ -1,5 +1,6 @@
 import sys
 import traceback
+import logging
 
 class CustomException(Exception):
     def __init__(self, error_message, error_detail: sys): # type: ignore
@@ -17,3 +18,13 @@ def error_message_detail(error, error_detail: sys): # type: ignore
         .format(filename, lineno, str(error))
     )
     return error_message
+
+
+# if __name__ == "__main__":
+    # try:
+    #     a = 1 / 0
+    # except Exception as e:
+    #     logging.info("Exception occurred", exc_info=True)
+    #     raise CustomException(e, sys) from e
+
+
