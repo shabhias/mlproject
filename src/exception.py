@@ -2,22 +2,28 @@ import sys
 import traceback
 import logging
 
+import traceback
+import logging
+
 class CustomException(Exception):
-    def __init__(self, error_message, error_detail: sys): # type: ignore
+    def __init__(self, error_message, error_detail):
         super().__init__(error_message)
         self.error_message = error_message_detail(error_message, error_detail)
-
+    
     def __str__(self):
         return self.error_message
 
-def error_message_detail(error, error_detail: sys): # type: ignore
-    tb = traceback.extract_tb(error_detail.exc_info()[2])
-    filename, lineno, _, _ = tb[-1]  # baris terakhir traceback
+def error_message_detail(error, error_detail):
+    _, _, exc_tb = error_detail.exc_info()
+    tb = traceback.extract_tb(exc_tb)
+    filename, lineno, _, _ = tb[-1]
+    
     error_message = (
         "Error occurred in python script name [{0}] line number [{1}] error message [{2}]"
         .format(filename, lineno, str(error))
     )
     return error_message
+
 
 
 # if __name__ == "__main__":
